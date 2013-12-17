@@ -34,6 +34,7 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        document.getElementById('scan_button').addEventListener('click', app.clickScan, false);
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -45,5 +46,13 @@ var app = {
         receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+    },
+    clickScan: function() {
+        console.log('Clicked "Scan" button');
+        window.plugins.barcodeScanner.scan(function(result) { // success
+            document.getElementById('scan_results').innerHTML = '<p>result.text: '+result.text+'</p><p>result.format: '+result.format+'</p><p>result.cancelled: '+result.cancelled+'</p>';
+        }, function(error) { // fail
+            document.getElementById('scan_results').innerHTML = '<p>Scan Error: '+error+'</p>';
+        });
     }
 };

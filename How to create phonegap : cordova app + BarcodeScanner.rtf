@@ -1,0 +1,57 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset0 Consolas;
+\f3\fnil\fcharset0 AndaleMono;}
+{\colortbl;\red255\green255\blue255;\red255\green128\blue0;\red157\green255\blue154;\red255\green0\blue0;
+\red0\green0\blue109;\red14\green110\blue109;\red210\green0\blue53;\red38\green38\blue38;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid1\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid2\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid101\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\}.}{\leveltext\leveltemplateid201\'02\'00.;}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid3}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}}
+\margl1440\margr1440\vieww15420\viewh15020\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs36 \cf0 How to create phone gap / cordova v2.7 app + BarcodeScanner\
+\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural
+\ls1\ilvl0\cf0 {\listtext	1.	}Create project using phonegap iOS command-line tools\uc0\u8232 
+\f1\fs28 \cf2 \cb0 \CocoaLigature0 $ cd /Users/danlynn/Documents/PhoneGap_Cordova/Projects/iOS\uc0\u8232 $ /Users/danlynn/Documents/PhoneGap_Cordova/phonegap-2.7.0/lib/ios/bin/create PrototypeBarcodeScanner com.webstop.prototypebarcodescanner PrototypeBarcodeScanner\
+\pard\tx940\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li1440\fi-1440\pardirnatural
+\ls1\ilvl1
+\f0\fs36 \cf0 \cb1 \CocoaLigature1 {\listtext	\uc0\u8259 	}Note that the reverse dns package name can\'92t have underscores and should not be camelcase.\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural
+\ls1\ilvl0\cf0 {\listtext	2.	}Open the *.xcodeproj file that was created.\
+{\listtext	3.	}To allow the app to run on the iPhone 5s, click on the inclosed CordovaLib.xcodeproj node in Project Navigator panel and then change filters to \'91All\'92 (Basic/All).  Under the \'91Architectures\'92 section, change the \'91Any iOS SDK\'92 settings found under \'91Debug\'92 and also \'91Release\'92 from \'93armv7\'94 to \'93Standard architectures (armv7, armv7s)\'94\
+{\listtext	4.	}Clean the project: Product -> Clean\
+{\listtext	5.	}Unlock actual iPhone 5s device.\
+{\listtext	6.	}Select actual iPhone 5s device at the top and click \'91Run\'92.\
+{\listtext	7.	}Randomly, you may have to click an additional \'91trust\'92 confirmation that appears after the app launches.\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+Note that some plugins like BarcodeScanner use code like zxing-all-in-one that require the compiler auto reference counting option to be turned off (
+\f2\fs24 \cb3 \shad\shadx0\shady-20\shadr0\shado0 \shadc0 -fno-objc-arc
+\f0\fs36 \cb1 \shad0 ).  This can be done within Xcode under the \'91Apple LLVM 5.0 - Language - Objective C\'92 section\'92s \'91Objective-C Automatic Reference Counting\'92 setting.\
+\
+Install the CDVBarcodeScanner plugin manually:\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural
+\ls2\ilvl0\cf0 {\listtext	1.	}Copy files from BarcodeScanner/src/ios to PrototypeBarcodeScanner/Plugins dir.\
+{\listtext	2.	}Tell Xcode that these files exist by right-clicking on \'91Plugins\'92 folder in Project Navigator and selecting \'91Add Files to XXX\'92 and select the source files from the Plugins dir.\
+{\listtext	3.	}Copy barcodescanner.js from BarcodeScanner/www to PrototypeBarcodeScanner/www. \cf4 NOTE: the barcodescanner.js from the OLD cdv230 sample project MUST be used instead of the newer cordova 3.x style plugin js from the new BarcodeScanner project.\cf0 \
+{\listtext	4.	}Add missing frameworks from this list:\uc0\u8232 
+\f3\fs28 	libiconv.dylib\uc0\u8232 	AVFoundation.framework\u8232 	AssetsLibrary.framework\u8232 	CoreVideo.framework\u8232 	QuartzCore.framework\u8232 
+\f0\fs36 Add any missing dylib or framework by clicking on the main project node then selecting the \'91Build Phases\'92 tab at the top of the project editor.  In the \'91Link Bindary With Libraries\'92 section, click the \'91+\'92 add icon and browse for the desired framework.\
+{\listtext	5.	}Update config.xml adding the following line to the list of plugins:\uc0\u8232 
+\f3\fs28 <plugin name="cordova.plugins.barcodeScanner" value="CDVBarcodeScanner" />
+\f0\fs36 \
+{\listtext	6.	}Turn off Automatic Reference Counting (per instructions above).\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+\cf0 \
+Integrate with app:\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural
+\ls3\ilvl0\cf0 {\listtext	1.	}Add the following script tag into your app:\uc0\u8232 
+\f2\fs24 \cf5 <script \cf6 type=\cf7 "text/javascript"\cf8  \cf6 src=\cf7 "barcodescanner.js"\cf5 ></script>
+\f0\fs36 \cf0 \
+{\listtext	2.	}Setup reference to scanner in your code:\uc0\u8232 
+\f3\fs28 var scanner = cordova.require("cordova/plugin/BarcodeScanner");\uc0\u8232 scanner.scan(function(result) \{ // success\u8232     console.log("Scanner result: \\n" +\u8232         "text: " + result.text + "\\n" +\u8232         "format: " + result.format + "\\n" +\u8232         "cancelled: " + result.cancelled + "\\n");\u8232 \}, function (error) \{ // fail\u8232     console.log("Scanning failed: ", error); \u8232 \});
+\f0\fs36 \
+{\listtext	3.	}\
+}

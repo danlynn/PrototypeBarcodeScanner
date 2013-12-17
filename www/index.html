@@ -32,8 +32,15 @@
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
+            <br/><br/>
+            <div>
+                <button id='scan_button'>Scan</button>
+            </div>
         </div>
+        <br/><br/>
+        <div id='scan_results'></div>
         <script type="text/javascript" src="cordova-2.7.0.js"></script>
+        <script type="text/javascript" src="barcodescanner.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
